@@ -1,3 +1,4 @@
+##
 FROM ubuntu:16.04
 
 # MongoDB
@@ -18,8 +19,6 @@ WORKDIR /node-server
 COPY . .
 RUN npm install
 
-# pm2 installieren
-# RUN npm install pm2@latest -g
 
 EXPOSE 3000
 
