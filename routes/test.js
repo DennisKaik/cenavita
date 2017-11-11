@@ -1,9 +1,11 @@
+console.log('test router load');
 var express = require('express');
 var router = express.Router();
 
-/* GET test page. */
-router.get('/test', function(req, res, next) {
-  res.render('test', { title: 'Testseite' });
+/* GET home page. */
+router.get('/', function (req, res, next) {
+  console.log('router test called');
+  res.render('test', { title: 'Express' });
 });
 
 module.exports = router;
