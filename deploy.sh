@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+chmod +x deploy.sh
 # more bash-friendly output for jq
 JQ="jq --raw-output --exit-status"
 
