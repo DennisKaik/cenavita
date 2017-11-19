@@ -21,22 +21,6 @@ deploy_cluster() {
         return 1
     fi
 
-    # wait for older revisions to disappear
-    # not really necessary, but nice for demos
-    : ' for attempt in {1..5}; do
-        if stale=$(aws ecs describe-services --cluster cenavita-docker-cluster --services cenavita_docker_service | \
-                       $JQ ".services[0].deployments | .[] | select(.taskDefinition != \"$revision\") | .taskDefinition"); then
-            echo "Waiting for stale deployments:"
-            echo "Stale: $stale"
-            sleep 5
-        else
-            echo "Deployed!"
-            return 0
-        fi
-    done
-    echo "Service update took too long."
-    return 1
-}'
 
 make_task_def(){
 	task_template='[
