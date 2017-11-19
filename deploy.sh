@@ -20,9 +20,9 @@ deploy_cluster() {
         echo "Error updating service."
         return 1
     fi
+}
 
-
-make_task_def(){
+make_task_def() {
 	task_template='[
 		{
 			"name": "cenavita-docker",
