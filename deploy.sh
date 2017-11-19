@@ -11,7 +11,7 @@ configure_aws_cli(){
 
 deploy_cluster() {
 
-    family="cenavita-docker-task-family"
+    family="cenavita-docker"
 
     make_task_def
     register_definition
