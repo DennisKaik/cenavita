@@ -1,4 +1,4 @@
 #! /bin/bash
 
-mongod --fork --logpath /var/log/mongod.log
+# mongod --fork --logpath /var/log/mongod.log
 npm start

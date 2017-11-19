@@ -8,7 +8,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 //-----------ROUTES---- MODELS
-var item = require('./models/itemModel');
+var Item = require('./models/itemModel');
+var br = require('./routes/bear');
+var Bear     = require('./models/bearModel');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var test = require('./routes/test');
@@ -16,11 +18,12 @@ var test = require('./routes/test');
 
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/Itemdb');
+mongoose.connect('mongodb://18.194.175.195:27017', { useMongoClient: true });
+
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
-  console.log('connection to MongoDB on localhost:27017 succeeded:')
+  console.log('connection to MongoDB on 18.194.175.195:27017 succeeded:')
   // we're connected!
 });
 
@@ -39,7 +42,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.use('/test', test);
-app.use('/item', item);
+app.use('/item', Item);
+
+app.use('/bears', Bear);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -58,6 +63,8 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
 
 module.exports = app;
 
