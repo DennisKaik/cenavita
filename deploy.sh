@@ -21,11 +21,11 @@ deploy_cluster() {
         return 1
     fi
 
-	$taskname = $(aws ecs list-tasks --cluster cenavita-docker-cluster --service-name cenavita_docker_service)
+	# $taskname = $(aws ecs list-tasks --cluster cenavita-docker-cluster --service-name cenavita_docker_service)
 	
-	echo "Task name: $taskname"
+	# echo "Task name: $taskname"
 
-	aws ecs stop-task --cluster cenavita-docker-cluster --task $taskname
+	# aws ecs stop-task --cluster cenavita-docker-cluster --task $taskname
 }
 
 make_task_def() {
