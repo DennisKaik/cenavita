@@ -21,7 +21,7 @@ deploy_cluster() {
         return 1
     fi
 
-
+}
 make_task_def(){
 	task_template='[
 		{
