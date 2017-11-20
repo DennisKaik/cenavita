@@ -8,9 +8,8 @@ Cenavita Projekt der HAW Hamburg unter Leitung von Prof. Dr. Jens-Eric von Düst
 - enter the Repo directory (p.e.: 'cd ./cenavita')
 - run 'npm install'. Download node for your system if required (f.e. 'brew istall node')
 - run 'npm install -g nodemon'
-- Install MongoDB instance on your System (f.e. 'brew install mongo')
-- Run 'mongod' to start mongo instance on localhost:27017
 - run 'nodemon bin/www' to start a cenavita node instance by using nodemon 
 
 GRATS U GOT IT
 
+-- local MongoDB not longer required. Mongo DB runs on AWS.
