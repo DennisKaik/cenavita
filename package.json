@@ -1,24 +1,32 @@
 {
-  "name": "cenavita",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
-  "dependencies": {
-    "body-parser": "~1.18.2",
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.6.9",
-    "express": "~4.15.5",
-    "kerberos": "0.0.23",
-    "mongoose": "^4.10.8",
-    "morgan": "~1.9.0",
-    "pug": "2.0.0-beta11",
-    "serve-favicon": "~2.4.5"
-  },
+  "name": "mean-app",
+  "version": "1.0.0",
+  "description": "MEAN stack application",
   "main": "app.js",
-  "devDependencies": {},
-  "author": "",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fullstacktraining/mean-stack-hero.git"
+  },
+  "keywords": [
+    "mean"
+  ],
+  "author": "Full Stack Training",
   "license": "ISC",
-  "description": ""
+  "bugs": {
+    "url": "https://github.com/fullstacktraining/mean-stack-hero/issues"
+  },
+  "homepage": "https://github.com/fullstacktraining/mean-stack-hero#readme",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3",
+    "mongodb": "^2.1.7",
+    "mongoose": "^4.4.8"
+  },
+  "devDependencies": {
+    "mocha": "^2.3.3"
+  }
 }

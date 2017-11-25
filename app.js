@@ -1,70 +1,32 @@
-
+require('./api/data/db.js');
 var express = require('express');
 var app = express();
 var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
-//-----------ROUTES---- MODELS
-var Item = require('./models/itemModel');
-var br = require('./routes/bear');
-var Bear     = require('./models/bearModel');
-var index = require('./routes/index');
-var users = require('./routes/users');
-var test = require('./routes/test');
 
+var routes = require('./api/routes');
 
-// mongoose instance connection url connection
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://18.194.175.195:27017', { useMongoClient: true });
+// Define the port to run on
+app.set('port', 3000);
 
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-  console.log('connection to MongoDB on 18.194.175.195:27017 succeeded:')
-  // we're connected!
+// Add middleware to console log every request
+app.use(function(req, res, next) {
+  console.log(req.method, req.url);
+  next(); 
 });
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
-
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
+// Set static directory before defining routes
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/node_modules', express.static(__dirname + '/node_modules'));
 
-app.use('/', index);
-app.use('/users', users);
-app.use('/test', test);
-app.use('/item', Item);
+// Enable parsing of posted forms
+app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/bears', Bear);
+// Add some routing
+app.use('/api', routes);
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+// Listen for requests
+var server = app.listen(app.get('port'), function() {
+  var port = server.address().port;
+  console.log('Magic happens on port ' + port);
 });
-
-// error handler
-app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
-
-
-
-module.exports = app;
-
